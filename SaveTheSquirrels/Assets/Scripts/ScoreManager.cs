@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+
     public static ScoreManager instance;
-    public Text scoreText;
-    public int remaining = SpawnScript.numSquirrels;
+
+    public TMP_Text scoreText;
+    public AudioSource nom;
+    public AudioSource ew;
+
+    int score = 0;
 
     private void Awake()
     {
@@ -16,18 +22,32 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = (remaining.ToString() + " REMAINING");
+        scoreText.text = "Score: " + score.ToString();
     }
 
     public void AddPoint()
     {
-        remaining -= 1;
-        if (remaining < 10)
+        ScoreManager.instance.nom.Stop();
+        score += 1;
+        scoreText.text = "Score: " + score.ToString();
+        ScoreManager.instance.nom.Play();
+        if (score >= 50)
         {
-            scoreText.text = ("0" + remaining.ToString() + " REMAINING");
-        } else
-        {
-            scoreText.text = (remaining.ToString() + " REMAINING");
+            GameManager.Instance.WinGame();
         }
+    }
+
+    public void LosePoint()
+    {
+        ScoreManager.instance.ew.Stop();
+        if (score > 1)
+        {
+           score -= 2;
+        } else if (score == 1)
+        {
+            score -= 1;
+        }
+        ScoreManager.instance.ew.Play();
+        scoreText.text = "Score: " + score.ToString();
     }
 }

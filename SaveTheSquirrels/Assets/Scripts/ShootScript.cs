@@ -35,8 +35,8 @@ public class ShootScript : MonoBehaviour
                 if (hit.transform.name == "Squirrel(Clone)")
                 {
                     Destroy(hit.transform.gameObject);
-                    ScoreManager.instance.AddPoint();
-                    if (ScoreManager.instance.remaining == 0)
+                    ShootScoreManager.instance.AddPoint();
+                    if (ShootScoreManager.instance.remaining == 0)
                     {
                         FindObjectOfType<AudioManager>().Play("WinSound");
                         FindObjectOfType<ShootGameManager>().WinGame();
