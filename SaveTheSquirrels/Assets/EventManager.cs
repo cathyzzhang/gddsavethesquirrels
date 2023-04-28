@@ -24,6 +24,7 @@ public class EventManager : MonoBehaviour
         if (eventID == 1) //Doe Library & Maze Game
         {
             Debug.Log("Loading Maze Game");
+            SceneManager.LoadScene("EnterMaze");
         } else if (eventID == 2) //Cal Memorial Stadium & Basketball Game
         {
             Debug.Log("Loading Basketball Game");
@@ -32,6 +33,7 @@ public class EventManager : MonoBehaviour
         } else if (eventID == 3) //Campanile & Car Race Game
         {
             Debug.Log("Loading Car Race Game");
+            SceneManager.LoadScene("EnterCar");
         } else if (eventID == 4) //Jacobs Hall & Shooting Game
         {
             SceneManager.LoadScene("EnterShoot");
