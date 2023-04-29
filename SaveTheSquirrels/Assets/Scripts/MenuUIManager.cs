@@ -76,14 +76,29 @@ public class MenuUIManager : MonoBehaviour
 
     public void CluesClick()
     {
-        if (isUIPanelActive == false)
+        /* if (isUIPanelActive == false)
         {
             cluePanel.SetActive(true);
             ClueID = 0;
             clues[ClueID].SetActive(true);
             isUIPanelActive = true;
             GameObject.Find("CluesButton").GetComponent<Button>().interactable = false;
+        } */
+        if (isUIPanelActive == false)
+        {
+            PlayerPrefs.DeleteAll();
+            if (!PlayerPrefs.HasKey("currEvent"))
+            {
+                PlayerPrefs.SetInt("currEvent", 0);
+            }
+            ClueID = PlayerPrefs.GetInt("currEvent");
+            Debug.Log(ClueID);
+            cluePanel.SetActive(true);
+            clues[ClueID].SetActive(true);
+            isUIPanelActive = true;
+            GameObject.Find("CluesButton").GetComponent<Button>().interactable = false;
         }
+
     }
 
     public void InstructionsClick()
@@ -94,17 +109,18 @@ public class MenuUIManager : MonoBehaviour
             isUIPanelActive = true;
         }
     }
-
+    
     public void BtnNext ()
     {
-        if(ClueID + 1 < clues.Length){
-            ClueID++;
-        }
-        //clues.SetActive(false);
+        PlayerPrefs.SetInt("currEvent", PlayerPrefs.GetInt("currEvent") + 1);
+        ClueID = PlayerPrefs.GetInt("currEvent");
+        Debug.Log(ClueID);
         clues[ClueID - 1].SetActive(false);
         clues[ClueID].SetActive(true);
+        
     }
 
+/*
     public void BtnPrev ()
     {
         if (ClueID - 1 >= 0){
@@ -114,4 +130,5 @@ public class MenuUIManager : MonoBehaviour
         clues[ClueID + 1].SetActive(false);
         clues[ClueID].SetActive(true);
     }
+    */
 }
