@@ -12,6 +12,8 @@ public class ShootGameManager : MonoBehaviour
     }
     public void WinGame()
     {
+        Debug.Log(PlayerPrefs.GetInt("currEvent"));
+        PlayerPrefs.SetInt("currEvent", 1);
         StartCoroutine(MakeTransition("WinScene", 2f, 2f));
     }
     public void LoseGame()
