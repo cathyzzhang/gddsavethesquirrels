@@ -52,4 +52,21 @@ public class EventPointer : MonoBehaviour
             menuUIManager.DisplayUserNotInRangePanel();
         }
     }
+
+    public void CheckLocationButton()
+    {
+        //need to update this so it gets each event ID, and based on the ID, displays different EVENT PANEL!
+        playerLocation = GameObject.Find("Canvas").GetComponent<LocationStatus>();
+        var currentPlayerLocation = new GeoCoordinatePortable.GeoCoordinate(playerLocation.GetLocationLat(), playerLocation.GetLocationLong());
+        var eventLocation = new GeoCoordinatePortable.GeoCoordinate(eventPos[0], eventPos[1]);
+        var distance = currentPlayerLocation.GetDistanceTo(eventLocation);
+        Debug.Log("Distance is: " + distance);
+        if(distance < eventManager.maxDistance)
+        {
+            menuUIManager.DisplayStartEventPanel(eventID);
+        } else
+        {
+            menuUIManager.DisplayUserNotInRangePanel();
+        }
+    }
 }
