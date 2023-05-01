@@ -28,35 +28,41 @@ public class ShootScript : MonoBehaviour
             {
                 ammoText.text = (ammo.ToString() + "/" + startingAmmo);
             }
+            Debug.Log("yyyyyy");
             RaycastHit hit;
-            FindObjectOfType<AudioManager>().Play("FireSound");
+            Debug.Log("SAKLJD");
             if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit))
             {
-                if (hit.transform.name == "Squirrel(Clone)")
+                if (hit.transform.name == "ShootSquirrel(Clone)")
                 {
                     Destroy(hit.transform.gameObject);
                     ShootScoreManager.instance.AddPoint();
                     if (ShootScoreManager.instance.remaining == 0)
                     {
-                        FindObjectOfType<AudioManager>().Play("WinSound");
-                        FindObjectOfType<ShootGameManager>().WinGame();
+                        FindObjectOfType<ShootAudioManager>().Play("WinSound");
+                        FindObjectOfType<GameManager>().WinGame();
                         canShoot = false;
                     }
                     else
                     {
-                        FindObjectOfType<AudioManager>().Play("KillSound");
+                        FindObjectOfType<ShootAudioManager>().Play("KillSound");
                     }
                 }
+            }
+            else
+            {
+                Debug.Log("this is not wack");
+                FindObjectOfType<ShootAudioManager>().Play("MissSound");
             }
             if (ammo == 0)
             {
                 canShoot = false;
-                FindObjectOfType<ShootGameManager>().LoseGame();
+                FindObjectOfType<GameManager>().LoseGame();
             }
         }
         else
         {
-            FindObjectOfType<AudioManager>().Play("DryFire");
+            FindObjectOfType<ShootAudioManager>().Play("DryFire");
         }
     }
 }

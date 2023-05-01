@@ -9,7 +9,7 @@ public class BranchScript : MonoBehaviour
         var squirrel = other.GetComponent<PlayerTouchMovement>();
         if (squirrel != null)
         {
-            ScoreManager.instance.LosePoint();
+            CarScoreManager.instance.LosePoint();
             Destroy(this.gameObject);
         }
     }
@@ -21,7 +21,7 @@ public class BranchScript : MonoBehaviour
 
     IEnumerator DestroySelf()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(7);
         Destroy(this.gameObject);
     }
 }

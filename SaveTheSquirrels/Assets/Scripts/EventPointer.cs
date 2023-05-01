@@ -15,14 +15,20 @@ public class EventPointer : MonoBehaviour
     public Vector2d eventPos;
     public int eventID;
 
+    //Vector2d eventLocation;
+
     MenuUIManager menuUIManager;
     EventManager eventManager;
+   //SpawnOnMap spawnOnMap;
 
     // Start is called before the first frame update
     void Start()
     {
+        eventPos = new Vector2d(37.8724045, -122.2593255);
         menuUIManager = GameObject.Find("Canvas").GetComponent<MenuUIManager>();
         eventManager = GameObject.Find("-EventManager").GetComponent<EventManager>();
+        //spawnOnMap = GameObject.Find("-EventSpawner").GetComponent<SpawnOnMap>();
+        //eventLocation = spawnOnMap._locations[eventID];
     }
 
     // Update is called once per frame
@@ -36,14 +42,17 @@ public class EventPointer : MonoBehaviour
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, (Mathf.Sin(Time.fixedTime*Mathf.PI*frequency)*amplitude)+15, transform.position.z);
     }
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         //need to update this so it gets each event ID, and based on the ID, displays different EVENT PANEL!
         playerLocation = GameObject.Find("Canvas").GetComponent<LocationStatus>();
         var currentPlayerLocation = new GeoCoordinatePortable.GeoCoordinate(playerLocation.GetLocationLat(), playerLocation.GetLocationLong());
         var eventLocation = new GeoCoordinatePortable.GeoCoordinate(eventPos[0], eventPos[1]);
         var distance = currentPlayerLocation.GetDistanceTo(eventLocation);
+        Debug.Log("Event Pos 0 is: " + eventPos[0]);
+        Debug.Log("Event Pos 1 is: " + eventPos[1]);
         Debug.Log("Distance is: " + distance);
+        /**
         if(distance < eventManager.maxDistance)
         {
             menuUIManager.DisplayStartEventPanel(eventID);
@@ -51,22 +60,7 @@ public class EventPointer : MonoBehaviour
         {
             menuUIManager.DisplayUserNotInRangePanel();
         }
+        **/
     }
 
-    public void CheckLocationButton()
-    {
-        //need to update this so it gets each event ID, and based on the ID, displays different EVENT PANEL!
-        playerLocation = GameObject.Find("Canvas").GetComponent<LocationStatus>();
-        var currentPlayerLocation = new GeoCoordinatePortable.GeoCoordinate(playerLocation.GetLocationLat(), playerLocation.GetLocationLong());
-        var eventLocation = new GeoCoordinatePortable.GeoCoordinate(eventPos[0], eventPos[1]);
-        var distance = currentPlayerLocation.GetDistanceTo(eventLocation);
-        Debug.Log("Distance is: " + distance);
-        if(distance < eventManager.maxDistance)
-        {
-            menuUIManager.DisplayStartEventPanel(eventID);
-        } else
-        {
-            menuUIManager.DisplayUserNotInRangePanel();
-        }
-    }
 }

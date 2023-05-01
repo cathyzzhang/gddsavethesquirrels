@@ -71,11 +71,5 @@ namespace UnityEngine.XR.ARFoundation.Samples
             }
         }
 
-        private bool isExceedingRotationCaps(Vector3 position)
-        {
-            int LOCK = 20;
-            return (position.x >= LOCK) && (position.y >= LOCK) && (position.z >= LOCK);
-        }
-
     }
 }

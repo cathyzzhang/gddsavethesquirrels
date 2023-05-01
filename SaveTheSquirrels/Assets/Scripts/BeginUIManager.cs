@@ -24,6 +24,7 @@ public class BeginUIManager : MonoBehaviour
 
     public void BeginButtonClick()
     {
+        Debug.Log("button clicked");
         BeginPanel.SetActive(false);
         StoryPanels[storyNumber].SetActive(true);
     }

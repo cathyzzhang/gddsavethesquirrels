@@ -17,7 +17,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         public float m_ThrowForce = 100f;
 
         // X and Y axis damping factors for the throw direction
-        public float m_ThrowDirectionX = 0f;
+        public float m_ThrowDirectionX = -0.17f;
         public float m_ThrowDirectionY = -0.87f;
 
         // Offset of the ball's position in relation to camera's position
@@ -31,7 +31,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         private float endTime;
         private float duration;
         private bool directionChosen = false;
-        private bool throwStarted = false;
+        private bool throwStarted;
 
         private void Start()
         {
@@ -46,8 +46,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
                 startPosition = Input.mousePosition;
                 startTime = Time.time;
-                throwStarted = true;
                 directionChosen = false;
+                
             }
             // We've ended the touch of the screen, which will end collecting info about the ball throw
             else if (Input.GetMouseButtonUp(0))
@@ -57,6 +57,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 endPosition = Input.mousePosition;
                 direction = startPosition - endPosition;
                 directionChosen = true;
+                throwStarted = true;
                 projectileRB.isKinematic = true;
             }
 
@@ -67,6 +68,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 projectileRB.useGravity = true;
                 projectileRB.isKinematic = false;
 
+                FindObjectOfType<BasketAudioManager>().Play("Swish");
                 projectileRB.AddForce(
                     GetComponent<Camera>().transform.forward * m_ThrowForce / duration +
                     GetComponent<Camera>().transform.up * direction.y * m_ThrowDirectionY +
@@ -78,13 +80,15 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 endPosition = new Vector3(0, 0, 0);
                 direction = new Vector3(0, 0, 0);
 
-                throwStarted = false;
                 directionChosen = false;
+
             }
 
-            // 5 seconds after throwing the ball, we reset it's position
-            if (Time.time - endTime >= 2 && Time.time - endTime <= 3)
+            // 2 seconds after throwing the ball, we reset it's position
+            if (throwStarted && Time.time - endTime >= 3 && Time.time - endTime <= 4)
+            {
                 ResetBall();
+            }
 
         }
         public void ResetBall()
@@ -96,6 +100,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             projectileRB.velocity = Vector3.zero;
             projectileRB.angularVelocity = Vector3.zero;
             endTime = 0.0f;
+            throwStarted = false;
 
             Vector3 ballPos = GetComponent<Camera>().transform.position + GetComponent<Camera>().transform.forward * m_BallCameraOffset.z + GetComponent<Camera>().transform.up * m_BallCameraOffset.y;
             projectileRB.position = ballPos;

@@ -17,9 +17,9 @@ public class SpawnScript : MonoBehaviour
     {
         int numSpawned = 0;
         int currSpawn = 0;
-        while (numSpawned < numSquirrels)
+        while (numSpawned < numSquirrels + 5)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             int rotation = Random.Range(0, 180);
             Instantiate(squirrel, spawnPoints[currSpawn].position, Quaternion.Euler(0, rotation, 0));
             currSpawn = (currSpawn + 1) % spawnPoints.Length;

@@ -9,21 +9,29 @@ public class Controller : MonoBehaviour
     public bool isFlat;
     public int acornsLeft;
     public float movespeed;
+    public bool gameFinished;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<Rigidbody>();
+        gameFinished = false;
     } 
 
     // Update is called once per frame
     void Update()
     {
+        if (acornsLeft == 0)
+        {
+            gameFinished = true;
+            FindObjectOfType<ChrisSceneManager>().LoadWin();
+        }
+
         Vector3 tilt = Input.acceleration;
 
         if (isFlat)
         {
-            tilt = Quaternion.Euler(90, 0, 0) * -tilt;
+            tilt = Quaternion.Euler(90, 0, 0) * tilt;
         }
 
         player.AddForce(tilt * movespeed);

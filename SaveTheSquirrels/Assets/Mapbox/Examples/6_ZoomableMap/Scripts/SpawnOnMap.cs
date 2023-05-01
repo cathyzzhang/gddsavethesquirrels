@@ -35,10 +35,10 @@
 				_locations[i] = Conversions.StringToLatLon(locationString);
 				var instance = Instantiate(_markerPrefab);
 				//I want to save the location of the spawned instance so i can calculate distance later
-				instance.GetComponent<EventPointer>().eventPos = _locations[i];
+				//instance.GetComponent<EventPointer>().eventPos = _locations[i];
 				//Also saving the event ID so I keep track of it better;
 				//note that event id starts at 1!!!!
-				instance.GetComponent<EventPointer>().eventID = i + 1;
+				instance.GetComponent<EventPointer>().eventID = i;
 				instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
 				instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
 				_spawnedObjects.Add(instance);

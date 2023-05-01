@@ -10,7 +10,7 @@ public class TouchAcorn : MonoBehaviour
         var squirrel = other.GetComponent<PlayerTouchMovement>();
         if (squirrel != null)
         {
-            ScoreManager.instance.AddPoint();
+            CarScoreManager.instance.AddPoint();
             Destroy(this.gameObject);
         }
     }

@@ -13,9 +13,7 @@ public class MenuUIManager : MonoBehaviour
     [SerializeField] private EventManager eventManager;
 
     public GameObject[] clues;
-    public Button nextClue; //Button to view next clue
-    public Button prevClue; //Button to view previous clue
-    public int ClueID = 0; //Will control where in the array you are
+    public int ClueID; //Will control where in the array you are
 
     bool isUIPanelActive;
     int tempEventID;
@@ -31,24 +29,20 @@ public class MenuUIManager : MonoBehaviour
         
     }
 
-    public void DisplayStartEventPanel(int eventID)
+    //LocationCheck
+    public void LocationCheck()
     {
-        if (isUIPanelActive == false)
-        {
-            tempEventID = eventID;
-            eventPanelUserInRange.SetActive(true);
-            isUIPanelActive = true;
+        if (eventManager.LocationMatch(ClueID)) {
+            Debug.Log("Joined event:" + ClueID);
+            eventManager.ActivateEvent(ClueID);
+        } else {
+            cluePanel.SetActive(false);
+            eventPanelUserNotInRange.SetActive(true);
         }
+        
     }
 
-    public void DisplayUserNotInRangePanel()
-    {
-        if (isUIPanelActive == false)
-        {
-            eventPanelUserNotInRange.SetActive(true);
-            isUIPanelActive = true;
-        }
-    }
+   
 
     public void CloseButtonClick()
     {
@@ -66,14 +60,7 @@ public class MenuUIManager : MonoBehaviour
         }
     }
 
-    public void JoinButtonClick()
-    {
-        Debug.Log("Joined event:" + tempEventID);
-        eventManager.ActivateEvent(tempEventID);
-
-    }
-
-
+    
     public void CluesClick()
     {
         /* if (isUIPanelActive == false)
@@ -86,15 +73,16 @@ public class MenuUIManager : MonoBehaviour
         } */
         if (isUIPanelActive == false)
         {
-            PlayerPrefs.DeleteAll();
             if (!PlayerPrefs.HasKey("currEvent"))
             {
                 PlayerPrefs.SetInt("currEvent", 0);
             }
             ClueID = PlayerPrefs.GetInt("currEvent");
+            Debug.Log("This is the ClueID");
             Debug.Log(ClueID);
             cluePanel.SetActive(true);
             clues[ClueID].SetActive(true);
+            Debug.Log(clues[ClueID]);
             isUIPanelActive = true;
             GameObject.Find("CluesButton").GetComponent<Button>().interactable = false;
         }
@@ -110,15 +98,17 @@ public class MenuUIManager : MonoBehaviour
         }
     }
     
-    public void BtnNext ()
-    {
-        PlayerPrefs.SetInt("currEvent", PlayerPrefs.GetInt("currEvent") + 1);
-        ClueID = PlayerPrefs.GetInt("currEvent");
-        Debug.Log(ClueID);
-        clues[ClueID - 1].SetActive(false);
-        clues[ClueID].SetActive(true);
+    // public void BtnNext()
+    // {
+    //     PlayerPrefs.SetInt("currEvent", PlayerPrefs.GetInt("currEvent") + 1);
+    //     ClueID = PlayerPrefs.GetInt("currEvent");
+    //     Debug.Log(ClueID);
+    //     clues[ClueID - 1].SetActive(false);
+    //     clues[ClueID].SetActive(true);
         
-    }
+    // }
+
+    
 
 /*
     public void BtnPrev ()

@@ -5,48 +5,63 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Start.unity
     guid: c18de476294ae4dc68f00e7447aa9e00
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map.unity
     guid: 3845c293bef25481c9903a83a96e5df0
   - enabled: 0
-    path: 
-    guid: 3344f5041b77d4d7aab357710a353fab
-  - enabled: 1
-    path: Assets/Scenes/Event4Shoot/ShootingGame.unity
-    guid: ff7d9a4970bd2ba42aef2d7189e405b5
-  - enabled: 1
-    path: Assets/Scenes/Event4Shoot/EnterShoot.unity
-    guid: 6ee1505b576bad44d880609db789c534
-  - enabled: 1
-    path: Assets/Scenes/Event4Shoot/WinScene.unity
-    guid: c77cf3d19bfb5f84c8cba9dc5c37f580
-  - enabled: 1
-    path: Assets/Scenes/Event4Shoot/LoseScene.unity
-    guid: abd26a8667ceeab4e9d8a13107e6f882
-  - enabled: 1
-    path: Assets/Scenes/Event2Basket/Basketball.unity
-    guid: 50a69364b393d4ce8a8b3589422b67b7
-  - enabled: 1
-    path: Assets/Scenes/Event2Basket/EnterBasketball.unity
-    guid: 9ec3a711d884a42109e4c6cf9d0ace56
-  - enabled: 1
-    path: Assets/Scenes/Event1Maze/EnterMaze.unity
+    path: Assets/Scenes/MazeGame/MazeScene.unity
     guid: c3643d2a8170fda4297bb29f49fef4fe
-  - enabled: 1
-    path: Assets/Scenes/Event3CarRace/CarLoseScene.unity
+  - enabled: 0
+    path: Assets/BasketballGame/Basketball.unity
+    guid: 50a69364b393d4ce8a8b3589422b67b7
+  - enabled: 0
+    path: Assets/Scenes/CarGame/CarLoseScene.unity
     guid: 80804b70c7e67834db80ffe29544dd05
-  - enabled: 1
-    path: Assets/Scenes/Event3CarRace/CarMainGame.unity
-    guid: 2d17cc9fe7f4747b289085c7c6700320
-  - enabled: 1
-    path: Assets/Scenes/Event3CarRace/CarWinScene.unity
-    guid: 2bf8aedd9e92d77459cee51f3b4c1665
-  - enabled: 1
-    path: Assets/Scenes/Event3CarRace/EnterCar.unity
+  - enabled: 0
+    path: Assets/Scenes/CarGame/CarTitleScene.unity
     guid: 3388d0a8aa15f9842a30e0c16d3e16b7
+  - enabled: 0
+    path: Assets/BasketballGame/BasketEnter.unity
+    guid: e1011479e6ecc46f6b9f01fce679bab4
+  - enabled: 0
+    path: Assets/BasketballGame/BasketLose.unity
+    guid: 5b7cfdcd1f3ba4c44b567accad29ec93
+  - enabled: 0
+    path: Assets/Scenes/BasketGame/BasketEnd.unity
+    guid: 6f9d1f646212a4726b0e793cf63a1d35
+  - enabled: 1
+    path: Assets/Scenes/ShootGame/ShootStart.unity
+    guid: fbf2b422da8234584b7fcd4f21a8308c
+  - enabled: 1
+    path: Assets/Scenes/ShootGame/ShootGame.unity
+    guid: 82cf11f6d3caf41e0954f2ec1640cbe0
+  - enabled: 1
+    path: Assets/Scenes/ShootGame/ShootEnd.unity
+    guid: ff4868909fabf4ab1bb54a0c9dbc7bc7
+  - enabled: 1
+    path: Assets/Scenes/ShootGame/ShootLose.unity
+    guid: a8f902713e1c346bda00a0296e97235b
+  - enabled: 0
+    path: Assets/Scenes/CarGame/CarMainGame.unity
+    guid: 8dd58fd24904243ef884898f3cb26829
+  - enabled: 0
+    path: Assets/Scenes/CarGame/CarEnd.unity
+    guid: f699bdbb2788b4cb6b6e999717fbc7cf
+  - enabled: 0
+    path: Assets/Scenes/MazeGame/EnterMazeScene.unity
+    guid: b273be1eed1946b4892951eb99e35df6
+  - enabled: 0
+    path: Assets/Scenes/MazeGame/MazeEnd.unity
+    guid: f3783e9e1656c436cbc78a67f0d96b93
+  - enabled: 0
+    path: Assets/Scenes/MazeGame/WinMazeScene.unity
+    guid: 31852a3fb67423d44818d7da946fab72
+  - enabled: 0
+    path: Assets/Scenes/MazeGame/MazeLose.unity
+    guid: 5721145a963954807bf817d0057119ee
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 89a6d18d3df8d3e4fa917b0f9a963bc0, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: de8a8e4f987434338a4b1062feb8d069, type: 2}
